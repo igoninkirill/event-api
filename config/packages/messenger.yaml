@@ -1,0 +1,13 @@
+framework:
+  messenger:
+    transports:
+      rabbitmq:
+        dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+        options:
+          exchange:
+            name: 'events_exchange'
+          queues:
+            account_event_queue:
+              binding_keys: ['account.*']
+    routing:
+      'App\Message\EventMessage': rabbitmq
